@@ -7,7 +7,7 @@ import pygame
 class Bullet(pygame.sprite.Sprite):  # 12 * 12
 	def __init__(self):
 		pygame.sprite.Sprite.__init__(self)
-		# 子弹四个方向(上下左右)
+		# 子弹四个方向(上下左右)且调用四张分别代表子弹上下左右的图片
 		self.bullets = ['./images/bullet/bullet_up.png', './images/bullet/bullet_down.png', './images/bullet/bullet_left.png', './images/bullet/bullet_right.png']
 		# 子弹方向(默认向上)
 		self.direction_x, self.direction_y = 0, -1
