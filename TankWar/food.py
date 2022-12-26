@@ -6,6 +6,7 @@ import random
 
 # 食物类, 用于提升坦克能力
 class Food(pygame.sprite.Sprite):
+	#调用不同的食物图片
 	def __init__(self):
 		pygame.sprite.Sprite.__init__(self)
 		# 消灭当前所有敌人
@@ -34,8 +35,9 @@ class Food(pygame.sprite.Sprite):
 		# 存在时间
 		self.time = 1000
 
-	# 生成食物
+	# 随机生成食物
 	def generate(self):
+		#随机函数
 		self.kind = random.randint(0, 6)
 		self.food = pygame.image.load(self.foods[self.kind]).convert_alpha()
 		self.rect = self.food.get_rect()
