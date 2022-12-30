@@ -8,6 +8,9 @@ import food
 import tanks
 import home
 from pygame.locals import *
+#类图以及调用图自动生成
+from pycallgraph import PyCallGraph
+from pycallgraph.output import GraphvizOutput
 
 
 is_gameover = False
@@ -626,4 +629,6 @@ def main():
 
 
 if __name__ == '__main__':
+	#需要提前配置运行路径。自动生成调用图在当前文件夹，格式为png
+	with PyCallGraph(output=GraphvizOutput()):
 	main()
