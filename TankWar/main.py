@@ -14,7 +14,7 @@ is_gameover = False
 NUM_OF_STAGES = 4
 
 
-# 开始界面显示
+# 开始界面显示 UI
 def show_start_interface(screen, width, height):
 	tfont = pygame.font.Font('./font/simkai.ttf', width//4)
 	cfont = pygame.font.Font('./font/simkai.ttf', width//20)
@@ -30,7 +30,7 @@ def show_start_interface(screen, width, height):
 	screen.blit(title, trect)
 	screen.blit(content1, crect1)
 	screen.blit(content2, crect2)
-	pygame.display.update()
+	pygame.display.update() #更新
 	while True:
 		for event in pygame.event.get():
 			if event.type == QUIT:
@@ -46,19 +46,19 @@ def show_start_interface(screen, width, height):
 def show_end_interface(screen, width, height, is_win):
 	bg_img = pygame.image.load("./images/others/background.png")   # 630 * 630
 	screen.blit(bg_img, (0, 0))
-	if is_win:
+	if is_win: #胜利结算
 		font = pygame.font.Font('./font/simkai.ttf', width//10)
 		content = font.render(u'恭喜通关！', True, (255, 0, 0))
 		rect = content.get_rect()
 		rect.midtop = (width/2, height/2)
 		screen.blit(content, rect)
-	else:
+	else:  #失败结算
 		fail_img = pygame.image.load("./images/others/gameover.png")  # 64 * 32
 		rect = fail_img.get_rect()
 		rect.midtop = (width/2, height/2)
 		screen.blit(fail_img, rect)
 	pygame.display.update()
-	while True:
+	while True: #退出
 		for event in pygame.event.get():
 			if event.type == QUIT:
 				sys.exit()
@@ -87,7 +87,7 @@ def show_switch_stage(screen, width, height, stage):
 # 我方坦克
 def handle_mytanksGroup(stage_data, screen):
 	if stage_data.tank_player1 in stage_data.mytanksGroup:
-		# 当玩家按下方向键, 即坦克在移动时, 通过切换两张不同的外观, 来显示坦克履带的运动的特效
+		# 当玩家按下方向键, 即坦克在移动时, 通过切换两张不同的外观（调用不同朝向的坦克图片）, 来显示坦克履带的运动的特效
 		if stage_data.is_switch_tank and stage_data.player1_moving:
 			screen.blit(stage_data.tank_player1.tank_0, (stage_data.tank_player1.rect.left, stage_data.tank_player1.rect.top))
 			stage_data.player1_moving = False
@@ -95,7 +95,7 @@ def handle_mytanksGroup(stage_data, screen):
 			screen.blit(stage_data.tank_player1.tank_1, (stage_data.tank_player1.rect.left, stage_data.tank_player1.rect.top))
 		if stage_data.tank_player1.protected:
 			screen.blit(stage_data.tank_player1.protected_mask1, (stage_data.tank_player1.rect.left, stage_data.tank_player1.rect.top))
-	if stage_data.num_player > 1:
+	if stage_data.num_player > 1: #多人模式
 		if stage_data.tank_player2 in stage_data.mytanksGroup:
 			if stage_data.is_switch_tank and stage_data.player2_moving:
 				screen.blit(stage_data.tank_player2.tank_0, (stage_data.tank_player2.rect.left, stage_data.tank_player2.rect.top))
