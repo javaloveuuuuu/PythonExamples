@@ -200,6 +200,15 @@ def handle_mybullet(stage_data, sound_data, screen):
 			# 子弹碰撞石头墙
 			if pygame.sprite.spritecollide(tank_player.bullet, stage_data.map_stage.brickGroup, True, None):
 				tank_player.bullet.being = False
+				#这里可以尝试以下写法
+				#for each in map_stage.brickGroup:
+                        #if pygame.sprite.collide_rect(tank_player.bullet, each):
+                            #tank_player.bullet.being = False
+                            #each.being = False
+                            #map_stage.brickGroup.remove(each)
+                           # break
+
+
 
 			# 子弹碰钢墙
 			if tank_player.bullet.stronger:
@@ -208,6 +217,16 @@ def handle_mybullet(stage_data, sound_data, screen):
 			else:
 				if pygame.sprite.spritecollide(tank_player.bullet, stage_data.map_stage.ironGroup, False, None):
 					tank_player.bullet.being = False
+					
+					#这里可以尝试以下写法
+					#for each in map_stage.ironGroup:
+    					#if pygame.sprite.collide_rect(tank_player.bullet, each):
+       						 #tank_player.bullet.being = False
+         				 #if tank_player.bullet.stronger:
+             						#each.being = False
+            						# map_stage.ironGroup.remove(each)
+         					# break
+
 
 			# 子弹碰大本营
 			if pygame.sprite.collide_rect(tank_player.bullet, stage_data.myhome):
